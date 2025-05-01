@@ -33,16 +33,50 @@
 \section{问题介绍}
 本次作业研究一个矩形平板的稳态温度场分布问题。平板尺寸为 $15 \, \text{cm} \times 12 \, \text{cm}$，假设板的表面是绝热的，仅在四条边有热流通过。一条 $15 \, \text{cm}$ 的边温度保持为 $100^\circ \text{C}$，其余三条边温度为 $20^\circ \text{C}$。
 
-为求解该问题，采用离散代数方法，使用SOR（超松弛高斯赛德尔迭代）方法计算温度场，并绘制等温线。具体步骤如下：
+为求解该问题，采用离散代数方法，使用SOR超松弛高斯赛德尔迭代方法计算温度场，并绘制等温线。具体步骤如下：
 \begin{enumerate}
     \item 将矩形平板离散为网格点，建立离散方程；
     \item 选择不同的松弛因子 $\omega$，比较收敛速度；
     \item 采用不同的网格尺寸，观察最佳松弛因子的变化；
     \item 使用Python编程实现计算，并绘制温度场的等温线图。
 \end{enumerate}
-\newpage
-\section{代码实现}
 
+\section{算法原理}
+二维稳态温度场的拉普拉斯方程为：
+\[
+\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} = 0
+\]
+
+将矩形平板离散为 $N_x \times N_y$ 的网格，网格点间距为 $\Delta x$ 和 $\Delta y$，离散化后得到：
+\[
+\frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta x^2} + \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta y^2} = 0
+\]
+
+整理得（高斯-赛德尔迭代公式）：
+\[
+T_{i,j}^{(k+1)} = \frac{\Delta y^2 (T_{i+1,j}^{(k)} + T_{i-1,j}^{(k+1)}) + \Delta x^2 (T_{i,j+1}^{(k)} + T_{i,j-1}^{(k+1)})}{2 (\Delta x^2 + \Delta y^2)}
+\]
+
+为加速迭代过程，采用SOR（Successive Over-Relaxation）方法，更新公式为：
+\[
+T_{i,j}^{(k+1)} = (1 - \omega) T_{i,j}^{(k)} + \frac{\omega}{2 (\Delta x^2 + \Delta y^2)} \left[ \Delta y^2 (T_{i+1,j}^{(k)} + T_{i-1,j}^{(k+1)}) + \Delta x^2 (T_{i,j+1}^{(k)} + T_{i,j-1}^{(k+1)}) \right]
+\]
+
+其中，$\omega$ 为松弛因子，$0 < \omega < 2$。通过调整 $\omega$，可以优化收敛速度。
+
+在本节中，我们假设 $\Delta x$ 和 $\Delta y$ 的大小相等，即：
+\[
+\Delta x = \Delta y
+\]
+这一假设在后续计算中将被广泛使用。
+
+代入之前的公式有：
+\[
+T_{i,j}^{(k+1)} = \frac{T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)} + T_{i,j+1}^{(k)} + T_{i,j-1}^{(k)}}{4}
+\]
+
+
+\section{代码实现}
 
 \newpage   
 \section{AI工具使用说明表}
@@ -61,12 +95,6 @@
 \end{tabular}
 \end{table}
 
-commit 记录如下图：
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{commits.pdf}
-    \caption{commit 记录}
-    \label{fig:commit_record}
-\end{figure}
+
 
 \end{document}
