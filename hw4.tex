@@ -1,0 +1,72 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{ctex} % 支持中文
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float} % Required for the H float option
+
+\lstset{
+    language=Python, % 添加语言支持
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+
+\title{计算流体力学作业4}
+\author{郑恒2200011086}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{问题介绍}
+本次作业研究一个矩形平板的稳态温度场分布问题。平板尺寸为 $15 \, \text{cm} \times 12 \, \text{cm}$，假设板的表面是绝热的，仅在四条边有热流通过。一条 $15 \, \text{cm}$ 的边温度保持为 $100^\circ \text{C}$，其余三条边温度为 $20^\circ \text{C}$。
+
+为求解该问题，采用离散代数方法，使用SOR（超松弛高斯赛德尔迭代）方法计算温度场，并绘制等温线。具体步骤如下：
+\begin{enumerate}
+    \item 将矩形平板离散为网格点，建立离散方程；
+    \item 选择不同的松弛因子 $\omega$，比较收敛速度；
+    \item 采用不同的网格尺寸，观察最佳松弛因子的变化；
+    \item 使用Python编程实现计算，并绘制温度场的等温线图。
+\end{enumerate}
+\newpage
+\section{代码实现}
+
+
+\newpage   
+\section{AI工具使用说明表}
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{AI名称} & \textbf{生成代码功能} & \textbf{使用内容} \\
+        \hline
+        Copilot & latex格式框架 & figure参数调整、图片插入\\
+        \hline
+        Deepseek & python绘图调整 & 90-104、156-166、203-210、234-241行图绘制的具体参数调整\\
+        \hline
+        Deepseek & gitignore文件忽略 & 全由ai添加\\
+        \hline
+\end{tabular}
+\end{table}
+
+commit 记录如下图：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{commits.pdf}
+    \caption{commit 记录}
+    \label{fig:commit_record}
+\end{figure}
+
+\end{document}
