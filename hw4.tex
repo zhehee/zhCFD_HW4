@@ -77,8 +77,23 @@ T_{i,j}^{(k+1)} = \frac{T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)} + T_{i,j+1}^{(k)} + T_
 
 
 \section{代码实现}
+代码框架如下所示：
+
+首先是核心求解函数：
+\lstinputlisting[firstline=5, lastline=35, language=Python, caption={Python代码实现}, label={lst:code}]{code.py}
+迭代终止条件为：
+ \(|T_{\text{new}} - T_{\text{old}}| < \text{tol}\)
+
+下根据不同的网格尺寸和松弛因子进行迭代，计算温度场分布的迭代次数，以此判断迭代速率。
+\lstinputlisting[firstline=37, lastline=50, language=Python, caption={不同大小的网格尺寸和松弛因子}, label={lst:code}]{code.py}
+以此画出不同网格尺寸和松弛因子下的迭代次数的关系图：
+\lstinputlisting[firstline=54, lastline=117, language=Python, caption={不同网格尺寸和松弛因子下的迭代次数的关系图}, label={lst:code}]{code.py}
+再根据最佳的松弛因子和网格尺寸进行迭代，计算温度场分布，并绘制等温线图：
+\lstinputlisting[firstline=119, lastline=141, language=Python, caption={计算温度场分布，并绘制等温线图}, label={lst:code}]{code.py}
 
 \newpage   
+\section{结果分析}
+
 \section{AI工具使用说明表}
 \begin{table}[!htbp]
     \centering
@@ -94,7 +109,6 @@ T_{i,j}^{(k+1)} = \frac{T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)} + T_{i,j+1}^{(k)} + T_
         \hline
 \end{tabular}
 \end{table}
-
 
 
 \end{document}
