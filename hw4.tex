@@ -93,6 +93,26 @@ T_{i,j}^{(k+1)} = \frac{T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)} + T_{i,j+1}^{(k)} + T_
 
 \newpage   
 \section{结果分析}
+根据代码实现的结果，绘制出不同网格尺寸和松弛因子下的迭代次数的关系图，如图\ref{fig:iteration}所示
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{convergence_analysis.jpg}
+    \caption{不同网格尺寸和松弛因子下的迭代次数关系图}
+    \label{fig:iteration}
+\end{figure}
+其中，横坐标为松弛因子，纵坐标为迭代次数。可以看出，随着松弛因子的增大，迭代次数逐渐减少，说明SOR算法可以有效加快迭代速度；但当松弛因子达到一定值后，迭代次数反而增加。这是因为过大的松弛因子会导致数值不稳定，从而增加迭代次数。
+
+蓝色线为网格数为 $5 \times 4$，绿色线为网格数为 $15 \times 12$，红色线为网格数为 $30 \times 24$，紫色线为网格数为 $50 \times 40$。可以看出，随着网格数的增大，迭代次数逐渐增加。这是因为网格数越大，计算量越大，从而增加了迭代次数。
+
+还可以发现，随着网格数的增大，最佳松弛因子逐渐增大。
+
+再绘制出等温线图，如图\ref{fig:contour}所示：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{temperature_field.jpg}
+    \caption{等温线图}
+    \label{fig:contour}
+\end{figure}
 
 \section{AI工具使用说明表}
 \begin{table}[!htbp]
@@ -103,7 +123,7 @@ T_{i,j}^{(k+1)} = \frac{T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)} + T_{i,j+1}^{(k)} + T_
         \hline
         Copilot & latex格式框架 & figure参数调整、图片插入\\
         \hline
-        Deepseek & python绘图调整 & 90-104、156-166、203-210、234-241行图绘制的具体参数调整\\
+        Deepseek & python绘图调整 & 83-104、106-118行图绘制的具体参数调整\\
         \hline
         Deepseek & gitignore文件忽略 & 全由ai添加\\
         \hline
